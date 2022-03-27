@@ -249,7 +249,7 @@ All commands can be used with: / """
 
 @app.on_message(filters.command("mhelp") & filters.private)
 async def help_command(_, message):
-    text, keyboard = await help_parser(message.from_user.mention)
+    text, keyboard = await mhelp_parser(message.from_user.mention)
     await app.send_message(message.chat.id, text, reply_markup=keyboard)
 
 
@@ -387,7 +387,7 @@ async def start_command(_, message):
     return
 
 
-async def help_parser(name, keyboard=None):
+async def mhelp_parser(name, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return (
